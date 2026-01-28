@@ -1,5 +1,6 @@
 ## EX. NO:2 IMPLEMENTATION OF PLAYFAIR CIPHER
-
+## NAME: A.DIVIYADHARSHINI
+## REG NO: 212224040080
  
 
 ## AIM:
@@ -24,20 +25,73 @@ To encrypt a message, one would break the message into digrams (groups of 2 lett
  
 
 ## ALGORITHM:
-
+```
 STEP-1: Read the plain text from the user.
 STEP-2: Read the keyword from the user.
 STEP-3: Arrange the keyword without duplicates in a 5*5 matrix in the row order and fill the remaining cells with missed out letters in alphabetical order. Note that ‘i’ and ‘j’ takes the same cell.
 STEP-4: Group the plain text in pairs and match the corresponding corner letters by forming a rectangular grid.
 STEP-5: Display the obtained cipher text.
 
-
+```
 
 
 Program:
 
 
+```
+#include <stdio.h>
+#include <string.h>
 
+int main()
+ {
+    int key;
+    char s[1000];
+
+    printf("Enter a plaintext to encrypt:\n");
+    fgets(s, sizeof(s), stdin);
+    printf("Enter key:\n");
+    scanf("%d", &key);
+
+    int n = strlen(s);
+
+    for (int i = 0; i < n; i++) 
+    {
+        char c = s[i];
+        if (c >= 'a' && c <= 'z') 
+        {
+            s[i] = 'a' + (c - 'a' + key) % 26;
+        }
+        else if (c >= 'A' && c <= 'Z')
+        {
+            s[i] = 'A' + (c - 'A' + key) % 26;
+        }
+    }
+    printf("Encrypted message: %s\n", s);
+
+    for (int i = 0; i < n; i++)
+    {
+        char c = s[i];
+        if (c >= 'a' && c <= 'z') 
+        {
+            s[i] = 'a' + (c - 'a' - key + 26) % 26; 
+        }
+        else if (c >= 'A' && c <= 'Z')
+        {
+            s[i] = 'A' + (c - 'A' - key + 26) % 26; 
+        }
+    }
+    printf("Decrypted message: %s\n", s);
+
+    return 0;
+}
+
+```
 
 
 Output:
+<img width="1632" height="781" alt="image" src="https://github.com/user-attachments/assets/2f88395f-6e22-4ff5-be47-5f911fccf75d" />
+
+Result:
+
+Thus the implementation of playfair cipher is here been executed successfully.
+
